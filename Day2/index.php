@@ -7,6 +7,8 @@ function printNextLetter(string $letter)
     echo   $next_letter;
 }
 
+
+
 echo printNextLetter('e');
 
 ?>
