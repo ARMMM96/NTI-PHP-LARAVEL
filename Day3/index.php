@@ -3,6 +3,18 @@
 $errors = array();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    function clean($input, $flag = 0)
+    {
+        $input = trim($input);
+        if ($flag == 0) {
+            $input = filter_var($input, FILTER_SANITIZE_STRING);
+        }
+        return $input;
+    }
+    $_POST['fname'] = clean($_POST['fname']);
+    $_POST['lname'] = clean($_POST['lname']);
+    $_POST['password'] = clean($_POST['password'],1);
+    $_POST['address'] = clean($_POST['address']);
 
     if (preg_match("/\S+/", $_POST['fname']) === 0) {
         $errors['fname'] = "* First Name is required.";
@@ -221,8 +233,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <tr>
                 <!-- The PHP Script in value attribute of the input below is use for value retrieval when registration fails due to validations -->
                 <td colspan="2"><input type="url" name="linkedin" id="linkedin" placeholder="Linkedin" value="<?php if (isset($_POST['linkedin'])) {
-                                                                                                                echo $_POST['linkedin'];
-                                                                                                            } ?>"></td>
+                                                                                                                    echo $_POST['linkedin'];
+                                                                                                                } ?>"></td>
             </tr>
             <tr>
                 <td colspan="2"><?php if (isset($errors['linkedin'])) {
