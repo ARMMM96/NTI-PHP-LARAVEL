@@ -64,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $errors['linkedin'] = "Length Must be >= 10 chars";
     }
 
-
     # validate Image 
     if (!empty($_FILES['image']['name'])) {
         $imgName  = $_FILES['image']['name'];
@@ -77,6 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $imgFinalName = time() . rand() . '.' . $imgExtension;
 
         $allowedExt = ['png', 'jpg'];
+
+
+        
 
         if (in_array($imgExtension, $allowedExt)) {
             //  code .....  
@@ -111,11 +113,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     } else {
 
         echo 'Valid Data .... ';
-        $_SESSION['Message']= "Welcome to   ";
+        $_SESSION['Message']= "Welcome    ";
 
         $_SESSION['user'] = ["name" => $name, "email" => $email];
         
-        header("Location : profile.php"); // throwing an error (Internal Server Error)    
+        header("Location: profile.php"); // throwing an error (Internal Server Error)    
     }
 }
 
@@ -143,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <div class="container">
         <h2>Register</h2>
 
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label for="name">Name</label>
